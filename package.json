@@ -8,7 +8,8 @@
     "test": "jest",
     "lint": "eslint . && prettier-eslint --list-different",
     "format": "prettier-eslint --write **/*.js",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server --config webpack.config.js --open"
   },
   "keywords": [],
   "author": "André Furquim",
@@ -29,8 +30,9 @@
     "jest": "^23.6.0",
     "prettier-eslint-cli": "^4.7.1",
     "react-dom": "^16.8.0",
-    "webpack": "^5.9.0",
-    "webpack-cli": "^4.2.0"
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
