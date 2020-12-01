@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '../src/Button';
+import App from '../src/App';
 
 const container = document.createElement('div');
 document.body.appendChild(container);
-ReactDOM.render(<Button>Test</Button>, container);
+ReactDOM.render(<App />, container);

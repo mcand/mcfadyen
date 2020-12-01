@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: {
-    mcfadyen: './src/Button.js',
+    mcfadyen: './src/App.js',
     example: './example/index.js',
   },
   plugins: [
