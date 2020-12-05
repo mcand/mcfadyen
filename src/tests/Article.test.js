@@ -25,7 +25,7 @@ describe('Article', () => {
   it('renders a <Grid>', () => {
     expect(wrapper.type()).toBe(Grid);
     expect(wrapper.prop('item')).toBe(true);
-    expect(wrapper.prop('lg')).toBe(3);
+    expect(wrapper.prop('lg')).toBe(4);
   });
 
   it('renders a <Card>', () => {

@@ -22,7 +22,7 @@ const App = () => {
         <Grid item xs={12}>
           <ArticleList title='Featured News' articles={articles} />
           <Divider />
-          <ArticleList showImages={false} title='Latest News' articles={articles} />
+          <ArticleList showImages={false} title='Latest News' articlesPerPage={9} articles={articles} />
           </Grid>
       </Grid>
     </>

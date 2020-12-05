@@ -6,11 +6,25 @@ import Article from '../Components/Article';
 
 describe('ArticleList', () => {
   let wrapper;
+  const setCurrentPage = jest.fn();
+  const useStateSpy = jest.spyOn(React, 'useState')
+  useStateSpy.mockImplementation((init) => [init, setCurrentPage]);
+
   const title = 'My Articles';
 
   beforeEach(() => {
-    wrapper = shallow(<ArticleList title={title} articles={articles} />);
+    wrapper = shallow(
+      <ArticleList
+        title={title}
+        articles={articles}
+      />
+    );
   });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
 
   it('renders the title of the <ArticleList>', () => {
     expect(wrapper.find('h2').text()).toBe(title);
@@ -23,4 +37,5 @@ describe('ArticleList', () => {
   it('renders articles', () => {
     expect(wrapper.find(Article).length).toEqual(articles.length);
   });
+
 });

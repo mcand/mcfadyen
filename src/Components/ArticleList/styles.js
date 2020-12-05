@@ -13,4 +13,9 @@ export const useStyles = makeStyles({
     textAlign: 'center',
     textDecoration: 'underline',
   },
+  pagination: {
+    justifyContent: 'center',
+    display: 'flex',
+    padding: '20px 0',
+  },
 });
