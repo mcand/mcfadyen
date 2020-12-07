@@ -7,37 +7,39 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { useStyles } from './styles';
-
-const Article = ({title, imageUrl, abstract, shouldShowImage}) => {
+import { Link } from 'react-router-dom'
+const Article = ({id, title, imageUrl, abstract, shouldShowImage}) => {
   const classes = useStyles();
 
   return (
     <Grid item xs={12} lg={4}>
-      <Card className={classes.root}>
-        <CardActionArea>
-          {shouldShowImage && <CardMedia
-            className={classes.media}
-            image={imageUrl}
-            title="Contemplative Reptile"
-          />
-          }
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {abstract}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <Link className={classes.link} to={`/details/${id}`}>
+        <Card className={classes.root}>
+          <CardActionArea>
+            {shouldShowImage && <CardMedia
+              className={classes.media}
+              image={imageUrl}
+            />
+            }
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {abstract}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Link>
     </Grid>
   );
   
 }
 
 Article.propTypes = {
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
   imageUrl: PropTypes.string,
   abstract: PropTypes.string.isRequired,
   shouldShowImage: PropTypes.bool,

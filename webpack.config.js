@@ -7,6 +7,9 @@ module.exports = {
     mcfadyen: './src/App.js',
     example: './example/index.js',
   },
+  output: {
+    publicPath: '/',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'McFadyen News',
@@ -17,6 +20,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
+    historyApiFallback: true,
   },
   module: {
     rules: [

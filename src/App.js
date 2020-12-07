@@ -1,30 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import AppMenu from './Components/AppMenu';
-import ArticleList from './Components/ArticleList';
-import ArticleService from './Services/ArticleService';
-import { Divider } from '@material-ui/core';
+import Home from './Components/Home';
+import Details from './Components/Details';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+} from 'react-router-dom';
 
 const App = () => {
-  const [articles, setArticles] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [type, setType] = useState('newest')
 
-  useEffect(() => {
-    ArticleService.getMostViewedArticles()
-      .then(res => {
-        setArticles(res.data.results);
-      })
-
-  }, [])
   return (
     <>
-      <Grid container spacing={2}>
-        <AppMenu brand='McFadyen News' />
-        <Grid item xs={12}>
-          <ArticleList title='Featured News' articles={articles} />
-          <Divider />
-          <ArticleList showImages={false} title='Latest News' articlesPerPage={9} articles={articles} />
+      <BrowserRouter>
+        <Grid container spacing={2}>
+          <AppMenu brand='McFadyen News' onTypeChange={value => setType(value)} onChange={value=> setSearchTerm(value)} />
+          <Grid item xs={12}>
+            <Switch>
+              <Route exact path="/">
+                <Home type={type} searchTerm={searchTerm} />
+              </Route>
+              <Route path="/details/:id">
+                <Details />
+              </Route>
+            </Switch>
           </Grid>
-      </Grid>
+        </Grid>
+      </BrowserRouter>
     </>
   )
 }

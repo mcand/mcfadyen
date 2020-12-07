@@ -4,6 +4,10 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  brand: {
+    color: 'inherit',
+    textDecoration: 'inherit',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -26,6 +30,16 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
+    },
+  },
+  select: {
+    marginLeft: 40,
+    color: 'white',
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderBottom: '1px solid white',
+    '& .MuiSvgIcon-root': {
+      color: 'white',
     },
   },
   searchIcon: {

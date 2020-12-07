@@ -17,14 +17,20 @@ const ArticleList = ({title, articles, showImages, articlesPerPage }) => {
     setCurrentPage(value);
   }
 
+  const renderArticles = () => {
+    return currentArticles.map((article, index) => getArticle(article, index))
+  }
+
   const getArticle = (article, index) => {
+    const uri = article.uri.match(/[^/]+$/)[0];
     return (
       <Article 
         key={index}
-        title={article.title}
+        id={uri}
+        title={article.title || article.headline.main}
         abstract={article.abstract}
         shouldShowImage={showImages}
-        imageUrl={article.media[0] && article.media[0]['media-metadata'][2]['url']} 
+        imageUrl={article.media && article.media[0] && article.media[0]['media-metadata'][2]['url']} 
       />
     );
   }
@@ -33,7 +39,7 @@ const ArticleList = ({title, articles, showImages, articlesPerPage }) => {
       <h2 className={classes.title}>{title}</h2>
       <Grid container spacing={0}>
         {
-          currentArticles.map((article, index) => getArticle(article, index))
+          renderArticles()
         }
         <Grid item lg={12}>
           <Pagination className={classes.pagination} size="large" shape="rounded" onChange={handleChange} page={currentPage} count={numberOfPages} color="primary" />
@@ -48,6 +54,7 @@ ArticleList.propTypes = {
   title: PropTypes.string,
   showImages: PropTypes.bool,
   articlesPerPage: PropTypes.number,
+  searchTerm: PropTypes.string,
 };
 
 ArticleList.defaultProps = {

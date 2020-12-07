@@ -1,12 +1,15 @@
 import React from 'react';
 import AppMenu from '../Components/AppMenu';
 import { mount } from 'enzyme';
+import Select from '@material-ui/core/Select';
 
 describe('AppMenu', () => {
   let wrapper;
+  const onTypeChange = jest.fn();
+  const onChange = jest.fn();
 
   beforeEach(() => {
-    wrapper = mount(<AppMenu brand='McFadyen News' />)
+    wrapper = mount(<AppMenu brand='McFadyen News' onTypeChange={onTypeChange} onChange={onChange}/>)
   });
 
   it('renders the mene with the title', () => {
@@ -19,7 +22,21 @@ describe('AppMenu', () => {
     expect(wrapper.prop('brand')).toBe(brand);
   });
 
-  it('renders an input for search', () => {
-    expect(wrapper.find('input').prop('placeholder')).toBe('Search');
+  // it('passes onTypeChange through to <Select>', () => {
+  //   wrapper.find(Select).simulate('change', { target: { value: 'newest'}});
+  //   expect(onChange).toHaveBeenCalled();
+  // });
+  it('renders an <input> for search', () => {
+    expect(wrapper.find('[data-testid="searchInput"]').at(0).prop('placeholder')).toBe('Search');
   });
+
+  it('renders a <select> to filter search', () => {
+    const select = wrapper.find(Select).at(0);
+    expect(select.length).toBe(1);
+  });
+
+  // it('changes the value of the input', () => {
+  //   wrapper.find('[data-testid="searchInput"]').at(0).simulate('change', {target: {value: 'test'}});
+  //   expect(onChange).toHaveBeenCalled();
+  // });
 });
